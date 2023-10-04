@@ -17,11 +17,7 @@ app.post('/gift', (req, res) => {
   // grab the parameters from the front-end here
   const body = req.body;
 
-  // TODO: prove that a name is in the list 
-  const index = niceList.findIndex(n => n === body.name);
-  const proof = merkleTree.getProof(index);
-
-  if (verifyProof(proof, body.name, MERKLE_ROOT)) {
+  if (verifyProof(body.proof, body.name, MERKLE_ROOT)) {
     res.send("You got a toy robot!");
   }
   else {
